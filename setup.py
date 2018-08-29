@@ -19,7 +19,7 @@ from setuptools import setup
 
 setup(
     name='Flask-Social',
-    version='1.6.2',
+    version='2.0.0',
     url='https://github.com/mattupstate/flask-social',
     license='MIT',
     author='Matthew Wright',
@@ -34,8 +34,8 @@ setup(
     include_package_data=True,
     platforms='any',
     install_requires=[
-        'Flask-Security>=1.6.9',
-        'Flask-OAuthlib==0.5.0'
+        'Flask-Security>=3.0.0',
+        'Flask-OAuthlib>=0.9.5'
     ],
     test_suite='nose.collector',
     tests_require=[
@@ -44,9 +44,6 @@ setup(
         'Flask-SQLAlchemy',
         'Flask-MongoEngine',
         'Flask-Peewee'
-    ],
-    dependency_links=[
-        'http://github.com/mattupstate/flask-security/tarball/develop#egg=Flask-Security-1.3.0-dev'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.ext.social.core
+    flask_social.core
     ~~~~~~~~~~~~~~~~~~~~~
 
     This module contains the Flask-Social core
@@ -12,7 +12,7 @@ from importlib import import_module
 
 from flask import current_app
 from flask_oauthlib.client import OAuthRemoteApp as BaseRemoteApp
-from flask.ext.security import current_user
+from flask_security import current_user
 from werkzeug.local import LocalProxy
 
 from .utils import get_config, update_recursive
@@ -61,10 +61,10 @@ class OAuthRemoteApp(BaseRemoteApp):
 def _get_state(app, datastore, providers, **kwargs):
     config = get_config(app)
 
-    for key in providers.keys():
+    for key in list(providers.keys()):
         config.pop(key.upper())
 
-    for key, value in config.items():
+    for key, value in list(config.items()):
         kwargs[key.lower()] = value
 
     kwargs.update(dict(
@@ -78,7 +78,7 @@ def _get_state(app, datastore, providers, **kwargs):
 class _SocialState(object):
 
     def __init__(self, **kwargs):
-        for key, value in kwargs.items():
+        for key, value in list(kwargs.items()):
             setattr(self, key.lower(), value)
 
     def __getattr__(self, name):
@@ -114,12 +114,12 @@ class Social(object):
 
         datastore = datastore or self.datastore
 
-        for key, value in default_config.items():
+        for key, value in list(default_config.items()):
             app.config.setdefault(key, value)
 
         providers = dict()
 
-        for key, config in app.config.items():
+        for key, config in list(app.config.items()):
             if not key.startswith('SOCIAL_') or config is None or key in default_config:
                 continue
 

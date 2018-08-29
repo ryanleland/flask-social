@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.ext.social.providers.google
+    flask_social.providers.google
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This module contains the Flask-Social google code
@@ -9,7 +9,7 @@
     :license: MIT, see LICENSE for more details.
 """
 
-from __future__ import absolute_import
+
 
 import httplib2
 import oauth2client.client as googleoauth

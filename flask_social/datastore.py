@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.ext.social.datastore
+    flask_social.datastore
     ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This module contains an abstracted social connection datastore.
@@ -78,7 +78,7 @@ class MongoEngineConnectionDatastore(MongoEngineDatastore, ConnectionDatastore):
             from mongoengine.queryset import Q, QCombination
         except ImportError:
             from mongoengine.queryset.visitor import Q, QCombination
-        queries = map(lambda i: Q(**{i[0]: i[1]}), kwargs.items())
+        queries = [Q(**{i[0]: i[1]}) for i in list(kwargs.items())]
         query = QCombination(QCombination.AND, queries)
         return self.connection_model.objects(query)
 

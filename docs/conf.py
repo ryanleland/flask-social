@@ -41,8 +41,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Flask-Social'
-copyright = u'2012, Matt Wright'
+project = 'Flask-Social'
+copyright = '2012, Matt Wright'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -187,8 +187,8 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'Flask-Social.tex', u'Flask-Social Documentation',
-   u'Matt Wright', 'manual'),
+  ('index', 'Flask-Social.tex', 'Flask-Social Documentation',
+   'Matt Wright', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -217,8 +217,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'Flask-Social', u'Flask-Social Documentation',
-     [u'Matt Wright'], 1)
+    ('index', 'Flask-Social', 'Flask-Social Documentation',
+     ['Matt Wright'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -231,8 +231,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'Flask-Social', u'Flask-Social Documentation',
-   u'Matt Wright', 'Flask-Social', 'One line description of project.',
+  ('index', 'Flask-Social', 'Flask-Social Documentation',
+   'Matt Wright', 'Flask-Social', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -249,10 +249,10 @@ texinfo_documents = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'Flask-Social'
-epub_author = u'Matt Wright'
-epub_publisher = u'Matt Wright'
-epub_copyright = u'2012, Matt Wright'
+epub_title = 'Flask-Social'
+epub_author = 'Matt Wright'
+epub_publisher = 'Matt Wright'
+epub_copyright = '2012, Matt Wright'
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.
@@ -297,13 +297,13 @@ pygments_style = 'flask_theme_support.FlaskyStyle'
 # fall back if theme is not there
 try:
     __import__('flask_theme_support')
-except ImportError, e:
-    print '-' * 74
-    print 'Warning: Flask themes unavailable.  Building with default theme'
-    print 'If you want the Flask themes, run this command and build again:'
-    print
-    print '  git submodule update --init'
-    print '-' * 74
+except ImportError as e:
+    print('-' * 74)
+    print('Warning: Flask themes unavailable.  Building with default theme')
+    print('If you want the Flask themes, run this command and build again:')
+    print()
+    print('  git submodule update --init')
+    print('-' * 74)
 
     pygments_style = 'tango'
     html_theme = 'default'

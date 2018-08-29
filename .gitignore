@@ -9,3 +9,5 @@ config.py
 build
 _build
 dist
+
+.pytest_cache

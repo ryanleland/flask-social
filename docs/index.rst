@@ -19,7 +19,7 @@ Flask-Social sets up endpoints for your app to make it easy for you to let your
 users connect and/or login using Facebook and Twitter. Flask-Social persists
 the connection information and allows you to get a configured instance of an
 API object with your user's token so you can make API calls on behalf of them.
-Currently Facebook, Twitter, foursquare and Google are supported out of
+Currently Facebook, Twitter, and Google are supported out of
 the box as long as you install the appropriate API library.
 
 
@@ -53,11 +53,6 @@ Then install your provider API libraries.
 
     $ pip install python-twitter
 
-**foursquare**::
-
-    $ pip install foursquare
-
-
 **Google**::
 
     $ pip install oauth2client google-api-python-client
@@ -74,7 +69,6 @@ provider:
 
 * `Facebook <https://developers.facebook.com/>`_
 * `Twitter <https://dev.twitter.com/>`_
-* `foursquare <https://developer.foursquare.com/>`_
 
 Bear in mind that Flask-Social requires Flask-Security. It would be a good idea
 to review the documentation for Flask-Security before moving on here as it
@@ -102,13 +96,6 @@ to configure your application with your provider's application values
         'consumer_secret': 'facebook app secret'
     }
 
-**foursquare**::
-
-    app.config['SOCIAL_FOURSQUARE'] = {
-        'consumer_key': 'client id',
-        'consumer_secret': 'client secret'
-    }
-
 **Google**::
 
     app.config['SOCIAL_GOOGLE'] = {
@@ -122,8 +109,8 @@ hypothetical profile page instead of Flask-Security's default of the root
 index::
 
     # ... other required imports ...
-    from flask.ext.social import Social
-    from flask.ext.social.datastore import SQLAlchemyConnectionDatastore
+    from flask_social import Social
+    from flask_social.datastore import SQLAlchemyConnectionDatastore
 
     # ... create the app ...
 
@@ -150,13 +137,13 @@ index::
     Security(app, SQLAlchemyUserDatastore(db, User, Role))
     Social(app, SQLAlchemyConnectionDatastore(db, Connection))
 
-If you do not want the same OAuth account to be connected to more than one user account, 
+If you do not want the same OAuth account to be connected to more than one user account,
 add the following to the Connection database model:
 
     __table_args__ = (db.UniqueConstraint('provider_id', 'provider_user_id', name='_providerid_userid_uc'), {})
 
-This will ensure that every row in the Connection table has a unique provider_id and 
-provider_user_id pair. This means that any given Twitter account can only be connected 
+This will ensure that every row in the Connection table has a unique provider_id and
+provider_user_id pair. This means that any given Twitter account can only be connected
 once.
 
 
@@ -173,12 +160,11 @@ add a mechanism on the profile page to do so. First the view method::
             'profile.html',
             content='Profile Page',
             twitter_conn=social.twitter.get_connection(),
-            facebook_conn=social.facebook.get_connection(),
-            foursquare_conn=social.foursquare.get_connection())
+            facebook_conn=social.facebook.get_connection()
 
 You should notice the mechanism for retreiving the current user's connection
 with each service provider. If a connection is not found, the value will be
-`None`. 
+`None`.
 
 Now lets take a look at the profile template::
 
@@ -198,8 +184,6 @@ Now lets take a look at the profile template::
 
     {{ show_provider_button('facebook', 'Facebook', facebook_conn) }}
 
-    {{ show_provider_button('foursquare', 'foursquare', foursquare_conn) }}
-
 In the above template code a form is displayed depending on if a connection for
 the current user exists or not. If the connection exists a disconnect button is
 displayed and if it doesn't exist a connect button is displayed. Clicking the
@@ -209,7 +193,7 @@ used when configuring an API instance.
 
 However, notice that the first form for removing social connections uses HTTP method
 tunneling, since HTML forms only support POST and GET. We tunnel by passing a query
-string parameter called __METHOD_OVERRIDE__ and set its value to DELETE. Ideally, we 
+string parameter called __METHOD_OVERRIDE__ and set its value to DELETE. Ideally, we
 can handle this via a piece of middleware::
 
     from werkzeug import url_decode
@@ -232,7 +216,7 @@ can handle this via a piece of middleware::
 
     app.wsgi_app = MethodRewriteMiddleware(app.wsgi_app)
 
-The middleware will now look for "METHOD_OVERRIDE" in the query string and if it's 
+The middleware will now look for "METHOD_OVERRIDE" in the query string and if it's
 found, update the REQUEST_METHOD environment variable.
 
 Logging In
@@ -259,10 +243,8 @@ for them to login via the provider. A login form would look like the following::
 
     {{ social_login('facebook', 'Facebook' )}}
 
-    {{ social_login('foursquare', 'foursquare' )}}
-
 In the above template code you'll notice the regular username and password login
-form and forms for the user to login via Twitter, Facebook, and foursquare. If
+form and forms for the user to login via Twitter, and Facebook. If
 the user has an existing connection with the provider they will automatically be
 logged in without having to enter their username or password.
 

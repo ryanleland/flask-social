@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.ext.social
+    flask_social
     ~~~~~~~~~~~~~~~~
 
     Flask-Social is a Flask extension that aims to add simple OAuth provider

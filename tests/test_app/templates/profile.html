@@ -20,15 +20,6 @@
   <input type="submit" name="connect_facebook" value="Connect with Facebook" />
 </form>
 
-{% if foursquare_conn %}
-<form action="{{ url_for('social.remove_connection', provider_id='foursquare', provider_user_id=foursquare_conn.provider_user_id) }}?__METHOD__=DELETE" name='foursquare_disconnect_form' method="POST">
-  <input type="submit" name="disconnect_foursquare" value="Remove foursquare Connection" />
-</form>
-{% endif %}
-<form action="{{ url_for('social.connect', provider_id='foursquare') }}" name='foursquare_connect_form' method="POST">
-  <input type="submit" name="connect_foursquare" value="Connect with foursquare" />
-</form>
-
 {% if google_conn %}
 <form action="{{ url_for('social.remove_connection', provider_id='google', provider_user_id=google_conn.provider_user_id) }}?__METHOD__=DELETE" name='google_disconnect_form' method="POST">
   <input type="submit" name="disconnect_google" value="Remove google Connection" />

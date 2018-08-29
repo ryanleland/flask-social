@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.ext.social.providers.vk
+    flask_social.providers.vk
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This module contains the Flask-Social vkontakte code
@@ -9,7 +9,7 @@
     :license: MIT, see LICENSE for more details.
 """
 
-from __future__ import absolute_import
+
 
 import vkontakte
 
@@ -47,7 +47,7 @@ def get_connection_values(response, **kwargs):
         fields='first_name,last_name,photo_100,screen_name')[0]
 
     profile_url = "http://vk.com/id%s" % response['user_id']
-    fullname = u'%s %s' % (profile['first_name'], profile['last_name'])
+    fullname = '%s %s' % (profile['first_name'], profile['last_name'])
     return dict(
         provider_id=config['id'],
         provider_user_id=str(profile['uid']),

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.ext.social.utils
+    flask_social.utils
     ~~~~~~~~~~~~~~~~~~~~~~
 
     This module contains the Flask-Social utils
@@ -58,7 +58,7 @@ def get_config(app):
 
     :param app: The application to inspect
     """
-    items = app.config.items()
+    items = list(app.config.items())
     prefix = 'SOCIAL_'
 
     def strip_prefix(tup):
@@ -68,7 +68,7 @@ def get_config(app):
 
 
 def update_recursive(d, u):
-    for k, v in u.iteritems():
+    for k, v in u.items():
         if isinstance(v, collections.Mapping):
             r = update_recursive(d.get(k, {}), v)
             d[k] = r

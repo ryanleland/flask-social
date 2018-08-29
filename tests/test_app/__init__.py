@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, render_template, current_app
-from flask.ext.security import login_required
+from flask_security import login_required
 from werkzeug import url_decode
 
 class Config(object):
@@ -19,11 +19,6 @@ class Config(object):
         'request_token_params': {
             'scope': 'email,publish_stream'
         }
-    }
-
-    SOCIAL_FOURSQUARE = {
-        'consumer_key': 'xxxx',
-        'consumer_secret': 'xxxx'
     }
 
     SOCIAL_GOOGLE = {
@@ -74,7 +69,7 @@ def create_app(config, debug=True):
     app.config.from_object(Config)
 
     if config:
-        for key, value in config.items():
+        for key, value in list(config.items()):
             app.config[key] = value
 
     app.wsgi_app = HTTPMethodOverrideMiddleware(app.wsgi_app)
@@ -94,7 +89,6 @@ def create_app(config, debug=True):
             content='Profile Page',
             twitter_conn=twitter.get_connection(),
             google_conn=current_app.social.google.get_connection(),
-            facebook_conn=current_app.social.facebook.get_connection(),
-            foursquare_conn=current_app.social.foursquare.get_connection())
+            facebook_conn=current_app.social.facebook.get_connection())
 
     return app

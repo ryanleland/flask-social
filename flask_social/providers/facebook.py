@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.ext.social.providers.facebook
+    flask_social.providers.facebook
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     This module contains the Flask-Social facebook code
@@ -9,7 +9,7 @@
     :license: MIT, see LICENSE for more details.
 """
 
-from __future__ import absolute_import
+
 
 import facebook
 

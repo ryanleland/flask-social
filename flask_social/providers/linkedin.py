@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 
 from linkedin import linkedin
 from linkedin.models import AccessToken
@@ -27,7 +27,7 @@ def get_api(connection, **kwargs):
         kwargs.get('consumer_key'),
         kwargs.get('consumer_secret'),
         None,
-        linkedin.PERMISSIONS.enums.values()
+        list(linkedin.PERMISSIONS.enums.values())
     )
     auth.token = AccessToken(getattr(connection, 'access_token'),
                              getattr(connection, 'expires_in'))
